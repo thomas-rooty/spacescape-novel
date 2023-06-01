@@ -1,12 +1,10 @@
 import { useEffect } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import { useCharactersStore } from '../../stores/characters.store'
 import { useScenariosStore } from '../../stores/scenarios.store'
 import { getAllScenarios } from '../../utils/fetchData'
 import CharStats from '../../components/charstats/CharStats'
 
 const Playing = () => {
-  const selectedCharacter = useCharactersStore((state) => state.selectedCharacter)
   const selectedScenario = useScenariosStore((state) => state.selectedScenario)
   const setSelectedScenario = useScenariosStore((state) => state.setSelectedScenario)
   const scenarios = useScenariosStore((state) => state.scenarios)
@@ -35,7 +33,7 @@ const Playing = () => {
       <View style={styles.characterContainer}>
         <CharStats />
       </View>
-      <Text style={styles.text}>Titre du scenario : {selectedScenario?.titre}</Text>
+      <Text style={styles.title}>{selectedScenario?.titre}</Text>
     </View>
   )
 }
@@ -50,6 +48,15 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
   },
+  title: {
+    fontSize: 30,
+    color: '#fff',
+    textAlign: 'center',
+    padding: 10,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  }
 })
 
 export default Playing
