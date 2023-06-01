@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { View, StyleSheet } from 'react-native'
-import Rocket from '../../components/rocket/Rocket'
+import { View, StyleSheet, ImageBackground } from 'react-native'
 import CharactersList from '../../components/lists/CharactersList'
 import { useCharacterStore } from '../../stores/characters.store'
 import { characterFakeData } from '../../mock/mock'
@@ -9,6 +8,7 @@ import { characterFakeData } from '../../mock/mock'
 const Home = () => {
   const characters = useCharacterStore((state) => state.characters)
   const setCharacters = useCharacterStore((state) => state.updateCharacters)
+  const background = require('../../assets/spacescape_banner.png')
 
   useEffect(() => {
     setCharacters(characterFakeData)
@@ -16,30 +16,21 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Rocket />
-      <CharactersList characters={characters} />
-      <StatusBar style='auto' />
+      <ImageBackground source={background} style={styles.image}>
+        <CharactersList characters={characters} />
+        <StatusBar style="auto" />
+      </ImageBackground>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffcd00',
     flex: 1,
-    paddingTop: 50,
-    padding: 10,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
-    marginBottom: 20,
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'black',
+    justifyContent: 'center',
   },
 })
 
