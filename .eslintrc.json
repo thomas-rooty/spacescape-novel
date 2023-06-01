@@ -44,6 +44,7 @@
     "spaced-comment": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-unknown-property": "off",
-    "no-return-assign": "off"
+    "no-return-assign": "off",
+    "no-underscore-dangle": "off"
   }
 }

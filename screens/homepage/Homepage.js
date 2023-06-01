@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { View, StyleSheet, ImageBackground } from 'react-native'
-import CharactersList from '../../components/lists/CharactersList'
 import { useCharacterStore } from '../../stores/characters.store'
-import { characterFakeData } from '../../mock/mock'
+import { getAllCharacters } from '../../utils/fetchData'
+import CharactersList from '../../components/lists/CharactersList'
 
 const Home = () => {
   const characters = useCharacterStore((state) => state.characters)
@@ -11,7 +11,11 @@ const Home = () => {
   const background = require('../../assets/spacescape_banner.png')
 
   useEffect(() => {
-    setCharacters(characterFakeData)
+    const fetchCharacters = async () => {
+      const result = await getAllCharacters()
+      setCharacters(result)
+    }
+    fetchCharacters()
   }, [])
 
   return (
