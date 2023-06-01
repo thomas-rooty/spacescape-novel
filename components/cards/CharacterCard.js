@@ -5,6 +5,7 @@ const CharacterCard = ({ character }) => {
   const setSelectedCharacter = useCharactersStore((state) => state.setSelectedCharacter)
   const selectedCharacter = useCharactersStore((state) => state.selectedCharacter)
 
+  // Selection logic
   const isSelected = selectedCharacter.nom === character.nom
 
   return (

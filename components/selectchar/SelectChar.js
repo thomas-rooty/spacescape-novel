@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
-import CharactersList from '../lists/CharactersList'
 import { useCharactersStore } from '../../stores/characters.store'
 import { getAllCharacters } from '../../utils/fetchData'
+import CharactersList from '../lists/CharactersList'
 
 const SelectChar = () => {
   const characters = useCharactersStore((state) => state.characters)
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     width: '100%',
-    height: '40%',
+    height: '33%',
     bottom: 0,
     borderRadius: 20,
     backgroundColor: 'rgba(0,0,0,0.5)',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     width: '80%',
     marginLeft: '10%',
     marginTop: 5,
-  }
+  },
 })
 
 export default SelectChar
