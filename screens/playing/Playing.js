@@ -36,7 +36,10 @@ const Playing = () => {
         <View style={styles.characterContainer}>
           <CharStats />
         </View>
-        <Text style={styles.title}>{selectedScenario?.titre}</Text>
+        <View style={styles.scenarioContainer}>
+          <Text style={styles.title}>{selectedScenario?.titre}</Text>
+          <Text style={styles.desc}>{selectedScenario?.desc}</Text>
+        </View>
       </ImageBackground>
     </View>
   )
@@ -48,7 +51,13 @@ const styles = StyleSheet.create({
   },
   backgroundImg: {
     flex: 1,
-    paddingTop: 60,
+    paddingTop: 50,
+  },
+  scenarioContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: 10,
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   image: {
     width: 200,
@@ -59,10 +68,14 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     padding: 10,
-    marginTop: 10,
     fontWeight: 'bold',
     fontStyle: 'italic',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  desc: {
+    fontSize: 16,
+    color: '#fff',
+    textAlign: 'center',
+    padding: 10,
   },
 })
 
