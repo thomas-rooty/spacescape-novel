@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { View, StyleSheet, ImageBackground } from 'react-native'
-import { useCharacterStore } from '../../stores/characters.store'
 import { getAllCharacters } from '../../utils/fetchData'
+import { useCharactersStore } from '../../stores/characters.store'
 import CharactersList from '../../components/lists/CharactersList'
 
 const Home = () => {
-  const characters = useCharacterStore((state) => state.characters)
-  const setCharacters = useCharacterStore((state) => state.updateCharacters)
+  const characters = useCharactersStore((state) => state.characters)
+  const setCharacters = useCharactersStore((state) => state.updateCharacters)
   const background = require('../../assets/spacescape_banner.png')
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { Image, Text, StyleSheet , View } from 'react-native'
+import { Image, StyleSheet , View } from 'react-native'
 
 const CharacterCard = ({ character }) => {
   return (
