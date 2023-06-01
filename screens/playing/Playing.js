@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, ImageBackground } from 'react-native'
 import { useScenariosStore } from '../../stores/scenarios.store'
 import { getAllScenarios } from '../../utils/fetchData'
 import CharStats from '../../components/charstats/CharStats'
@@ -9,6 +9,8 @@ const Playing = () => {
   const setSelectedScenario = useScenariosStore((state) => state.setSelectedScenario)
   const scenarios = useScenariosStore((state) => state.scenarios)
   const setScenarios = useScenariosStore((state) => state.setScenarios)
+
+  const background = require('../../assets/scenarios/OuSePoser.png')
 
   useEffect(() => {
     const fetchScenarios = async () => {
@@ -30,19 +32,23 @@ const Playing = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.characterContainer}>
-        <CharStats />
-      </View>
-      <Text style={styles.title}>{selectedScenario?.titre}</Text>
+      <ImageBackground source={background} resizeMode="cover" style={styles.backgroundImg}>
+        <View style={styles.characterContainer}>
+          <CharStats />
+        </View>
+        <Text style={styles.title}>{selectedScenario?.titre}</Text>
+      </ImageBackground>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#a45d5d',
     flex: 1,
-    paddingTop: 50,
+  },
+  backgroundImg: {
+    flex: 1,
+    paddingTop: 60,
   },
   image: {
     width: 200,
@@ -53,10 +59,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     padding: 10,
+    marginTop: 10,
     fontWeight: 'bold',
     fontStyle: 'italic',
     backgroundColor: 'rgba(0,0,0,0.5)',
-  }
+  },
 })
 
 export default Playing
