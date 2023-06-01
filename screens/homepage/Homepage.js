@@ -2,7 +2,6 @@ import { Audio } from 'expo-av'
 import { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { Text, View, StyleSheet } from 'react-native'
-import Cube from '../../components/Cube'
 
 //const playSound = async () => {
 //  try {
@@ -20,7 +19,6 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Cube />
       <StatusBar style="auto" />
     </View>
   )
