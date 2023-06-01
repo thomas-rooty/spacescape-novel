@@ -11,7 +11,6 @@ const CharactersList = ({ characters }) => {
 const styles = StyleSheet.create({
   list: {
     justifyContent: 'space-around',
-    alignItems: 'center',
     width: '100%',
   },
 })
