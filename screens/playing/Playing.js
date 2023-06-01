@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
   },
   backgroundImg: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 60,
   },
   scenarioContainer: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 10,
+    marginTop: 20,
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   image: {
