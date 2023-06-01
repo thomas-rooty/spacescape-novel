@@ -7,8 +7,7 @@
     "plugin:react/recommended",
     "airbnb",
     "airbnb/hooks",
-    "prettier",
-    "prettier/react"
+    "prettier"
   ],
   "overrides": [
   ],
@@ -29,6 +28,18 @@
           ".jsx"
         ]
       }
-    ]
+    ],
+    "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/style-prop-object": "off",
+    "react/function-component-definition": "off",
+    "arrow-body-style": "off",
+    "no-unused-vars": "off",
+    "import/prefer-default-export": "off",
+    "react/prop-types": "off",
+    "no-use-before-define": "off",
+    "global-require": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 }
