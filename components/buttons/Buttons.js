@@ -1,13 +1,13 @@
-import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { useCharactersStore } from '../../stores/characters.store'
 
-export const StartButton = (onPress) => {
+export const StartButton = ({ onPress }) => {
   const selectedCharacter = useCharactersStore((state) => state.selectedCharacter)
   const startImg = require('../../assets/start.png')
 
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={() => alert(`You selected ${selectedCharacter.nom}`)}>
+      <TouchableOpacity onPress={() => onPress()}>
         <Image source={startImg} resizeMode="contain" style={styles.button} />
       </TouchableOpacity>
     </View>
@@ -25,5 +25,5 @@ const styles = StyleSheet.create({
   button: {
     width: 200,
     height: 200,
-  }
+  },
 })
