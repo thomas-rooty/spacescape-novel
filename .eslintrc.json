@@ -40,6 +40,10 @@
     "no-use-before-define": "off",
     "global-require": "off",
     "import/no-extraneous-dependencies": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "spaced-comment": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-unknown-property": "off",
+    "no-return-assign": "off"
   }
 }

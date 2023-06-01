@@ -1,12 +1,22 @@
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import { StatusBar } from 'expo-status-bar'
 import { Text, View } from 'react-native'
+import Homepage from './screens/homepage/Homepage'
+
+const Stack = createStackNavigator()
 
 const App = () => {
   return (
-    <View>
-      <Text>Armand s'optimise le megatron !</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Homepage" component={Homepage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
