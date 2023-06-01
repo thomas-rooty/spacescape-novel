@@ -1,25 +1,24 @@
-import { Audio } from 'expo-av'
 import { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { Text, View, StyleSheet } from 'react-native'
-
-//const playSound = async () => {
-//  try {
-//    const { sound } = await Audio.Sound.createAsync(require('../../assets/capysong.mp3'))
-//    await sound.playAsync()
-//  } catch (error) {
-//    console.log('Error occurred while playing sound:', error)
-//  }
-//}
+import { View, StyleSheet } from 'react-native'
+import Rocket from '../../components/rocket/Rocket'
+import CharactersList from '../../components/lists/CharactersList'
+import { useCharacterStore } from '../../stores/characters.store'
+import { characterFakeData } from '../../mock/mock'
 
 const Home = () => {
+  const characters = useCharacterStore((state) => state.characters)
+  const setCharacters = useCharacterStore((state) => state.updateCharacters)
+
   useEffect(() => {
-    //playSound()
+    setCharacters(characterFakeData)
   }, [])
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <Rocket />
+      <CharactersList characters={characters} />
+      <StatusBar style='auto' />
     </View>
   )
 }
