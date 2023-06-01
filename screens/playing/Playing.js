@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
-import { View, Image, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { useCharactersStore } from '../../stores/characters.store'
 import { useScenariosStore } from '../../stores/scenarios.store'
 import { getAllScenarios } from '../../utils/fetchData'
+import CharStats from '../../components/charstats/CharStats'
 
 const Playing = () => {
   const selectedCharacter = useCharactersStore((state) => state.selectedCharacter)
@@ -21,17 +22,18 @@ const Playing = () => {
 
   // Set the selected scenario to a random scenario that has niveau 1 in it
   useEffect(() => {
-    const niveauOneScenarios = scenarios.filter((scenario) => scenario.niveau === 1)
-    if (niveauOneScenarios.length > 0) {
-      const randomScenario = niveauOneScenarios[Math.floor(Math.random() * niveauOneScenarios.length)]
-      setSelectedScenario(randomScenario)
-    }
+    //const niveauOneScenarios = scenarios.filter((scenario) => scenario.niveau === 1)
+    //if (niveauOneScenarios.length > 0) {
+    //  const randomScenario = niveauOneScenarios[Math.floor(Math.random() * niveauOneScenarios.length)]
+    //  setSelectedScenario(randomScenario)
+    //}
+    setSelectedScenario(scenarios[3]) // TEMP
   }, [scenarios])
 
   return (
     <View style={styles.container}>
       <View style={styles.characterContainer}>
-        <Image style={styles.image} source={{ uri: selectedCharacter.imgURL }} />
+        <CharStats />
       </View>
       <Text style={styles.text}>Titre du scenario : {selectedScenario?.titre}</Text>
     </View>
@@ -42,8 +44,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#a45d5d',
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 50,
   },
   image: {
     width: 200,
