@@ -1,14 +1,24 @@
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Image, Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { removeScenario } from '../../utils/adminUtils'
+import { useUserStore } from '../../stores/user.store'
 
 const ScenarioCard = ({ scenario }) => {
-  const handlePress = () => {
-    console.log('pressed')
+  const cross = require('../../assets/cross.png')
+  const token = useUserStore((state) => state.token)
+
+  const handleDelete = async () => {
+    await removeScenario(scenario._id, token)
+    alert('Scenario supprimé')
   }
+
   return (
     <View style={styles.card}>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
+        <TouchableOpacity style={styles.button}>
           <Text style={styles.text}>{scenario.titre}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.crossBtn} onPress={handleDelete}>
+          <Image style={styles.cross} source={cross} />
         </TouchableOpacity>
       </View>
     </View>
@@ -30,10 +40,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 4,
   },
   container: {
-    width: '100%',
+    width: '90%',
     height: '100%',
     display: 'flex',
     justifyContent: 'space-around',
+    flexDirection: 'row',
     alignItems: 'flex-start',
   },
   button: {
@@ -44,6 +55,13 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
+  },
+  crossBtn: {
+    display: 'flex',
+  },
+  cross: {
+    width: 29,
+    height: 29,
   },
 })
 

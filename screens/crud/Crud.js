@@ -6,9 +6,9 @@ import { useScenariosStore } from '../../stores/scenarios.store'
 import { getAllScenarios } from '../../utils/fetchData'
 
 const Crud = () => {
+  const navigation = useNavigation()
   const setScenarios = useScenariosStore((state) => state.setScenarios)
   const scenarios = useScenariosStore((state) => state.scenarios)
-  const navigation = useNavigation()
   const user = useUserStore((state) => state.user)
 
   // Rendering of non-admin users is not allowed
@@ -27,7 +27,7 @@ const Crud = () => {
       setScenarios(scenariosResult)
     }
     fetchScenarios()
-  }, [])
+  }, [scenarios])
 
   return (
     <View style={styles.container}>

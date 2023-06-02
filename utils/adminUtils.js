@@ -13,3 +13,16 @@ export const addScenario = async (scenario, token) => {
   })
   return await response.json()
 }
+
+// Function that removes a scenario using the api
+export const removeScenario = async (scenarioId, token) => {
+  const uri = `${api}/scenarios/${scenarioId}`
+  const response = await fetch(uri, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'token': token,
+    },
+  })
+  return await response.json()
+}
