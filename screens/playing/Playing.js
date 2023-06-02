@@ -63,7 +63,6 @@ const Playing = () => {
       navigation.navigate('Homepage')
     }
     if (hasUserPlayed) {
-      //alert('Passage au niveau suivant !')
       setHasUserPlayed(false)
       const nextScenario = randomNextScenario(scenarios, unplanneds, selectedScenario)
       if (nextScenario !== false) {
