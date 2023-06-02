@@ -6,8 +6,6 @@ import { useUserStore } from '../../stores/user.store'
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const user = useUserStore((state) => state.user)
-  const token = useUserStore((state) => state.token)
   const setUser = useUserStore((state) => state.setUser)
   const setToken = useUserStore((state) => state.setToken)
 

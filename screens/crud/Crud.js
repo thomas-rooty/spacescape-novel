@@ -1,31 +1,17 @@
 import { useNavigation } from '@react-navigation/native'
-import { StyleSheet, Text, View } from 'react-native'
-import { useUserStore } from '../../stores/user.store'
-import ScenarioInput from '../../components/inputs/ScenarioInput'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 const Crud = () => {
   const navigation = useNavigation()
-  const user = useUserStore((state) => state.user)
-  const token = useUserStore((state) => state.token)
 
-  const onPress = () => {
-    navigation.navigate('Playing')
-  }
-
-  // Rendering of non-admin users is not allowed
-  if (user.role !== 'admin') {
-    return (
-      <View style={styles.container}>
-        <Text>Not authorized to see this content</Text>
-      </View>
-    )
-  }
-
-  // Rendering of admin users is allowed
   return (
     <View style={styles.container}>
-      <Text>Crud</Text>
-      <ScenarioInput token={token} />
+      <Text style={styles.title}>CRUD</Text>
+      <View style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.navigate('AddScenario')}>
+          <Text style={styles.btnText}>Add a Scenario</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -33,9 +19,25 @@ const Crud = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  button: {
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 10,
+    margin: 10,
+    borderBottomColor: 'grey',
+    borderBottomWidth: 4,
+  },
+  btnText: {
+    fontSize: 20,
   },
 })
 
