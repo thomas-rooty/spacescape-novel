@@ -4,22 +4,22 @@ import { Alert, View, StyleSheet, Text, ImageBackground } from 'react-native'
 import { useScenariosStore } from '../../stores/scenarios.store'
 import { useCharactersStore } from '../../stores/characters.store'
 import { getAllScenarios } from '../../utils/fetchData'
-import { updateCharStats } from '../../utils/updateCharStats'
+import { updateCharWithBonus, updateCharWithMalus } from '../../utils/statsUpdates'
 import { characterAlive } from '../../utils/characterAlive'
 import CharStats from '../../components/charstats/CharStats'
 import ChoicesList from '../../components/lists/ChoicesList'
 
 const Playing = () => {
+  // Import scenario and character store
+  const background = require('../../assets/scenarios/OuSePoser.png')
   const navigation = useNavigation()
+  const [hasUserPlayed, setHasUserPlayed] = useState(false)
   const selectedScenario = useScenariosStore((state) => state.selectedScenario)
   const setSelectedScenario = useScenariosStore((state) => state.setSelectedScenario)
   const scenarios = useScenariosStore((state) => state.scenarios)
   const setScenarios = useScenariosStore((state) => state.setScenarios)
   const selectedCharacter = useCharactersStore((state) => state.selectedCharacter)
-  const updateSelectedCharacter = useCharactersStore((state) => state.updateSelectedCharacter)
-  const [hasUserPlayed, setHasUserPlayed] = useState(false)
-
-  const background = require('../../assets/scenarios/OuSePoser.png')
+  const updateAttribute = useCharactersStore((state) => state.updateAttribute)
 
   // Game system logic
   useEffect(() => {
@@ -32,12 +32,11 @@ const Playing = () => {
 
   // Randomly select a scenario to start off with
   useEffect(() => {
-    //const niveauOneScenarios = scenarios.filter((scenario) => scenario.niveau === 1)
-    //if (niveauOneScenarios.length > 0) {
-    //  const randomScenario = niveauOneScenarios[Math.floor(Math.random() * niveauOneScenarios.length)]
-    //  setSelectedScenario(randomScenario)
-    //}
-    setSelectedScenario(scenarios[0]) // TEMP
+    const niveauOneScenarios = scenarios.filter((scenario) => scenario.niveau === 1)
+    if (niveauOneScenarios.length > 0) {
+      const randomScenario = niveauOneScenarios[Math.floor(Math.random() * niveauOneScenarios.length)]
+      setSelectedScenario(randomScenario)
+    }
   }, [scenarios])
 
   // What to do after a choice is made
@@ -49,7 +48,8 @@ const Playing = () => {
     setHasUserPlayed(true)
 
     // Update character stats
-    await updateCharStats(choice, selectedCharacter, updateSelectedCharacter)
+    await updateCharWithBonus(choice, selectedCharacter, updateAttribute)
+    await updateCharWithMalus(choice, selectedCharacter, updateAttribute)
   }
 
   // Function that runs on character update
