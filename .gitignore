@@ -18,3 +18,4 @@ web-build/
 
 # IDEs
 .idea
+.env.local
