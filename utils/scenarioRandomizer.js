@@ -7,7 +7,7 @@ export const randomeFirstScenario = (scenarios) => {
 
 export const randomNextScenario = (scenarios, unplanneds, currentScenario) => {
   // Generate a random number between 0 and 3, so that an unplanned scenario is selected 25% of the time
-  const random = 0
+  const random = Math.floor(Math.random() * 4)
 
   // Check if it's the last scenario
   if (currentScenario.nextScenarioPossible === 'FIN') {
