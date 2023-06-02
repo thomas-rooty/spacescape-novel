@@ -56,12 +56,13 @@ const Playing = () => {
     await updateCharWithMalus(choice, selectedCharacter, updateAttribute)
   }
 
-  // Function that runs on character update
-  useEffect(() => {
+  // Function to handle round logic
+  const handleRound = () => {
     if (!characterAlive(selectedCharacter)) {
       Alert.alert('Game Over', 'Vous êtes mort !')
       navigation.navigate('Homepage')
     }
+
     if (hasUserPlayed) {
       setHasUserPlayed(false)
       const nextScenario = randomNextScenario(scenarios, unplanneds, selectedScenario)
@@ -72,6 +73,10 @@ const Playing = () => {
         navigation.navigate('Homepage')
       }
     }
+  }
+
+  useEffect(() => {
+    handleRound()
   }, [selectedCharacter])
 
   return (
