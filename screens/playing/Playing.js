@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Alert, View, StyleSheet, Text, ImageBackground } from 'react-native'
 import { useScenariosStore } from '../../stores/scenarios.store'
+import { useUnplannedStore } from '../../stores/unplanned.store'
 import { useCharactersStore } from '../../stores/characters.store'
-import { getAllScenarios } from '../../utils/fetchData'
+import { getAllScenarios, getAllUnplanned } from '../../utils/fetchData'
 import { updateCharWithBonus, updateCharWithMalus } from '../../utils/statsUpdates'
 import { characterAlive } from '../../utils/characterAlive'
 import { randomNextScenario, randomeFirstScenario } from '../../utils/scenarioRandomizer'
@@ -19,14 +20,18 @@ const Playing = () => {
   const setSelectedScenario = useScenariosStore((state) => state.setSelectedScenario)
   const scenarios = useScenariosStore((state) => state.scenarios)
   const setScenarios = useScenariosStore((state) => state.setScenarios)
+  const unplanneds = useUnplannedStore((state) => state.unplanneds)
+  const setUnplanneds = useUnplannedStore((state) => state.setUnplanneds)
   const selectedCharacter = useCharactersStore((state) => state.selectedCharacter)
   const updateAttribute = useCharactersStore((state) => state.updateAttribute)
 
   // Game system logic
   useEffect(() => {
     const fetchScenarios = async () => {
-      const results = await getAllScenarios()
-      setScenarios(results)
+      const scenariosResult = await getAllScenarios()
+      setScenarios(scenariosResult)
+      const unplannedResult = await getAllUnplanned()
+      setUnplanneds(unplannedResult)
     }
     fetchScenarios()
   }, [])
@@ -60,7 +65,7 @@ const Playing = () => {
     if (hasUserPlayed) {
       //alert('Passage au niveau suivant !')
       setHasUserPlayed(false)
-      const nextScenario = randomNextScenario(scenarios, selectedScenario)
+      const nextScenario = randomNextScenario(scenarios, unplanneds, selectedScenario)
       if (nextScenario !== false) {
         setSelectedScenario(nextScenario)
       } else {

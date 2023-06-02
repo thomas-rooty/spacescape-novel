@@ -5,9 +5,16 @@ export const getAllCharacters = async () => {
   return response.json()
 }
 
-// Get all the scenarios from API\
+// Get all the scenarios from API
 export const getAllScenarios = async () => {
   const uri = 'http://10.74.1.120:5000/api/scenarios'
+  const response = await fetch(uri)
+  return response.json()
+}
+
+// Get all the unplanned from API
+export const getAllUnplanned = async () => {
+  const uri = 'http://10.74.1.120:5000/api/unplanned'
   const response = await fetch(uri)
   return response.json()
 }
