@@ -7,15 +7,17 @@ const Login = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const user = useUserStore((state) => state.user)
+  const token = useUserStore((state) => state.token)
   const setUser = useUserStore((state) => state.setUser)
+  const setToken = useUserStore((state) => state.setToken)
 
   const handleLogin = async () => {
-    const user = await loginUser(email, password)
-    if (user) {
-      alert(`Bienvenue ${user.name}`)
+    const res = await loginUser(email, password)
+    console.log(res.user)
+    if (res) {
       navigation.navigate('Homepage')
-      setUser(user)
-      console.log(user)
+      setUser(res.user)
+      setToken(res.token)
     } else {
       alert('Mauvais identifiants')
     }

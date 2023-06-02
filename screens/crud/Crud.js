@@ -1,10 +1,12 @@
 import { useNavigation } from '@react-navigation/native'
 import { StyleSheet, Text, View } from 'react-native'
 import { useUserStore } from '../../stores/user.store'
+import ScenarioInput from '../../components/inputs/ScenarioInput'
 
 const Crud = () => {
   const navigation = useNavigation()
   const user = useUserStore((state) => state.user)
+  const token = useUserStore((state) => state.token)
 
   const onPress = () => {
     navigation.navigate('Playing')
@@ -23,6 +25,7 @@ const Crud = () => {
   return (
     <View style={styles.container}>
       <Text>Crud</Text>
+      <ScenarioInput token={token} />
     </View>
   )
 }
@@ -30,6 +33,9 @@ const Crud = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 

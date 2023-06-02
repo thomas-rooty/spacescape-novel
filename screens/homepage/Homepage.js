@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import { ImageBackground, StyleSheet, View } from 'react-native'
+import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import { StartButton } from '../../components/buttons/StartButton'
 import { LoginPageButton, AdminPanelButton } from '../../components/buttons/Buttons'
 import { useCharactersStore } from '../../stores/characters.store'

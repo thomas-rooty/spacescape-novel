@@ -10,11 +10,13 @@
     "prettier": "prettier '*.js'"
   },
   "dependencies": {
+    "@react-native-picker/picker": "^2.4.8",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/stack": "^6.3.16",
     "expo": "~48.0.15",
     "expo-av": "^13.2.1",
     "expo-status-bar": "~1.4.4",
+    "jwt-decode": "^3.1.2",
     "react": "18.2.0",
     "react-native": "0.71.8",
     "zustand": "^4.3.8"
