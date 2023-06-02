@@ -6,7 +6,7 @@ import { useCharactersStore } from '../../stores/characters.store'
 import { getAllScenarios } from '../../utils/fetchData'
 import { updateCharWithBonus, updateCharWithMalus } from '../../utils/statsUpdates'
 import { characterAlive } from '../../utils/characterAlive'
-import { randomStarterScenario } from '../../utils/randomStarterScenario'
+import { randomFirstScenario, randomNextScenario } from '../../utils/randomFirstScenario'
 import CharStats from '../../components/charstats/CharStats'
 import ChoicesList from '../../components/lists/ChoicesList'
 
@@ -34,7 +34,7 @@ const Playing = () => {
   // Randomly select a scenario to start off with
   useEffect(() => {
     if (scenarios.length > 0) {
-      setSelectedScenario(randomStarterScenario(scenarios))
+      setSelectedScenario(randomFirstScenario(scenarios))
     }
   }, [scenarios])
 
@@ -60,6 +60,7 @@ const Playing = () => {
     if (hasUserPlayed) {
       //alert('Passage au niveau suivant !')
       setHasUserPlayed(false)
+      setSelectedScenario(randomNextScenario(scenarios, selectedScenario))
     }
   }, [selectedCharacter])
 
