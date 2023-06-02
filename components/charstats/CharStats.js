@@ -16,6 +16,7 @@ const CharStats = () => {
           <Text style={styles.stat}>PV : {selectedCharacter.vieDefault}</Text>
           <Text style={styles.stat}>Espece : {selectedCharacter.espece}</Text>
           <Text style={styles.stat}>Energie : {selectedCharacter.energie}</Text>
+          <Text style={styles.stat}>Intelligence : {selectedCharacter.intelligence}</Text>
         </View>
         <View style={styles.columnRight}>
           <Text style={styles.stat}>Force : {selectedCharacter.force}</Text>

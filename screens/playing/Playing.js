@@ -29,7 +29,7 @@ const Playing = () => {
     //  const randomScenario = niveauOneScenarios[Math.floor(Math.random() * niveauOneScenarios.length)]
     //  setSelectedScenario(randomScenario)
     //}
-    setSelectedScenario(scenarios[5]) // TEMP
+    setSelectedScenario(scenarios[0]) // TEMP
   }, [scenarios])
 
   // What to do after a choice is made
