@@ -19,7 +19,7 @@ export const LoginPageButton = () => {
 export const AdminPanelButton = () => {
   const navigation = useNavigation()
   const onPress = () => {
-    navigation.navigate('AdminPanel')
+    navigation.navigate('Crud')
   }
 
   return (
