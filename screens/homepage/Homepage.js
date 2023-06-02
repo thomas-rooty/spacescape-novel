@@ -1,7 +1,7 @@
-import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { ImageBackground, StyleSheet, View } from 'react-native'
 import { StartButton } from '../../components/buttons/StartButton'
+import LoginPageButton from '../../components/buttons/Buttons'
 import { useCharactersStore } from '../../stores/characters.store'
 import SelectChar from '../../components/selectchar/SelectChar'
 
@@ -17,6 +17,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <ImageBackground source={background} resizeMode="cover" style={styles.image}>
+        <LoginPageButton />
         {selectedCharacter.nom && <StartButton onPress={onPress} />}
         <SelectChar />
       </ImageBackground>
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: 'center',
   },
 })
 
