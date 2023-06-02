@@ -3,8 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Homepage from './screens/homepage/Homepage'
 import Playing from './screens/playing/Playing'
 import Login from './screens/login/Login'
-import AddScenario from './screens/crud/AddScenario'
 import Crud from './screens/crud/Crud'
+import AddScenario from './screens/crud/AddScenario'
+import ManageScenarios from './screens/crud/ManageScenarios'
 
 const Stack = createStackNavigator()
 
@@ -21,6 +22,7 @@ const App = () => {
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Crud' component={Crud} />
         <Stack.Screen name='AddScenario' component={AddScenario} />
+        <Stack.Screen name='ManageScenarios' component={ManageScenarios} />
       </Stack.Navigator>
     </NavigationContainer>
   )
