@@ -13,7 +13,7 @@ const CharStats = () => {
       </View>
       <View style={styles.right}>
         <View style={styles.columnLeft}>
-          <Text style={styles.stat}>PV : {selectedCharacter.vieDefault}</Text>
+          <Text style={styles.stat}>PV : {selectedCharacter.vie}</Text>
           <Text style={styles.stat}>Espece : {selectedCharacter.espece}</Text>
           <Text style={styles.stat}>Energie : {selectedCharacter.energie}</Text>
           <Text style={styles.stat}>Intelligence : {selectedCharacter.intelligence}</Text>

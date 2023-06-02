@@ -1,15 +1,23 @@
-import { useEffect } from 'react'
-import { View, StyleSheet, Text, ImageBackground } from 'react-native'
+import { useEffect, useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { Alert, View, StyleSheet, Text, ImageBackground } from 'react-native'
 import { useScenariosStore } from '../../stores/scenarios.store'
+import { useCharactersStore } from '../../stores/characters.store'
 import { getAllScenarios } from '../../utils/fetchData'
+import { updateCharStats } from '../../utils/updateCharStats'
+import { characterAlive } from '../../utils/characterAlive'
 import CharStats from '../../components/charstats/CharStats'
 import ChoicesList from '../../components/lists/ChoicesList'
 
 const Playing = () => {
+  const navigation = useNavigation()
   const selectedScenario = useScenariosStore((state) => state.selectedScenario)
   const setSelectedScenario = useScenariosStore((state) => state.setSelectedScenario)
   const scenarios = useScenariosStore((state) => state.scenarios)
   const setScenarios = useScenariosStore((state) => state.setScenarios)
+  const selectedCharacter = useCharactersStore((state) => state.selectedCharacter)
+  const updateSelectedCharacter = useCharactersStore((state) => state.updateSelectedCharacter)
+  const [hasUserPlayed, setHasUserPlayed] = useState(false)
 
   const background = require('../../assets/scenarios/OuSePoser.png')
 
@@ -33,9 +41,28 @@ const Playing = () => {
   }, [scenarios])
 
   // What to do after a choice is made
-  const onPress = (choice) => {
-    alert(choice.titre)
+  const onChoiceMade = async (choice) => {
+    // Show user what's been done
+    Alert.alert(choice.bonus.titre, choice.bonus.desc)
+
+    // Update user played status
+    setHasUserPlayed(true)
+
+    // Update character stats
+    await updateCharStats(choice, selectedCharacter, updateSelectedCharacter)
   }
+
+  // Function that runs on character update
+  useEffect(() => {
+    if (!characterAlive(selectedCharacter)) {
+      Alert.alert('Game Over', 'Vous êtes mort !')
+      navigation.navigate('Homepage')
+    }
+    if (hasUserPlayed) {
+      alert('Passage au niveau suivant !')
+      setHasUserPlayed(false)
+    }
+  }, [selectedCharacter])
 
   return (
     <View style={styles.container}>
@@ -48,7 +75,7 @@ const Playing = () => {
           <Text style={styles.desc}>{selectedScenario?.desc}</Text>
         </View>
         <View style={styles.choicesContainer}>
-          <ChoicesList choices={selectedScenario?.actionPossibles} onPress={onPress} />
+          <ChoicesList choices={selectedScenario?.actionPossibles} onPress={onChoiceMade} />
         </View>
       </ImageBackground>
     </View>
