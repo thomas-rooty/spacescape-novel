@@ -13,6 +13,7 @@ const Playing = () => {
 
   const background = require('../../assets/scenarios/OuSePoser.png')
 
+  // Game system logic
   useEffect(() => {
     const fetchScenarios = async () => {
       const results = await getAllScenarios()
@@ -21,7 +22,7 @@ const Playing = () => {
     fetchScenarios()
   }, [])
 
-  // Set the selected scenario to a random scenario that has niveau 1 in it
+  // Randomly select a scenario to start off with
   useEffect(() => {
     //const niveauOneScenarios = scenarios.filter((scenario) => scenario.niveau === 1)
     //if (niveauOneScenarios.length > 0) {
@@ -30,6 +31,11 @@ const Playing = () => {
     //}
     setSelectedScenario(scenarios[5]) // TEMP
   }, [scenarios])
+
+  // What to do after a choice is made
+  const onPress = (choice) => {
+    alert(choice.titre)
+  }
 
   return (
     <View style={styles.container}>
@@ -42,7 +48,7 @@ const Playing = () => {
           <Text style={styles.desc}>{selectedScenario?.desc}</Text>
         </View>
         <View style={styles.choicesContainer}>
-          <ChoicesList choices={selectedScenario?.actionPossibles} />
+          <ChoicesList choices={selectedScenario?.actionPossibles} onPress={onPress} />
         </View>
       </ImageBackground>
     </View>
