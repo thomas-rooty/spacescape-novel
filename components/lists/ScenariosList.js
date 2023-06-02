@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from 'react-native'
+import { Text, FlatList, StyleSheet, View } from 'react-native'
 import ScenarioCard from '../cards/ScenarioCard'
 import { useScenariosStore } from '../../stores/scenarios.store'
 
@@ -7,9 +7,13 @@ const ScenariosList = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Liste des scenarios</Text>
+      </View>
       <FlatList
         data={scenarios}
         renderItem={({ item }) => <ScenarioCard scenario={item} />}
+        keyExtractor={(item) => item._id}
       />
     </View>
   )
@@ -17,9 +21,22 @@ const ScenariosList = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 500,
+    paddingTop: 50,
+    height: '100%',
     width: '100%',
-    backgroundColor: '#ffcd00',
+    backgroundColor: '#000000',
+  },
+  header: {
+    backgroundColor: '#000',
+    height: 100,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
   },
 })
 

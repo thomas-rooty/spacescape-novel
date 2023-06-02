@@ -1,8 +1,13 @@
+import { useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { useUserStore } from '../../stores/user.store'
+import { useScenariosStore } from '../../stores/scenarios.store'
+import { getAllScenarios } from '../../utils/fetchData'
 
 const Crud = () => {
+  const setScenarios = useScenariosStore((state) => state.setScenarios)
+  const scenarios = useScenariosStore((state) => state.scenarios)
   const navigation = useNavigation()
   const user = useUserStore((state) => state.user)
 
@@ -14,6 +19,15 @@ const Crud = () => {
       </View>
     )
   }
+
+  // Retrieve all scenarios from the database
+  useEffect(() => {
+    const fetchScenarios = async () => {
+      const scenariosResult = await getAllScenarios()
+      setScenarios(scenariosResult)
+    }
+    fetchScenarios()
+  }, [])
 
   return (
     <View style={styles.container}>

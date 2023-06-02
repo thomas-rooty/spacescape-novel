@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { useUserStore } from '../../stores/user.store'
-import { useScenariosStore } from '../../stores/scenarios.store'
 import ScenariosList from '../../components/lists/ScenariosList'
 
 const ManageScenarios = () => {
@@ -19,9 +18,7 @@ const ManageScenarios = () => {
   // Rendering of admin users is allowed
   return (
     <View style={styles.container}>
-      <Text>CRUD</Text>
       <ScenariosList />
-      <Text>CRUD</Text>
     </View>
   )
 }
