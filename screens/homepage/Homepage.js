@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { ImageBackground, StyleSheet, View } from 'react-native'
-import { StartButton } from '../../components/buttons/Buttons'
+import { StartButton } from '../../components/buttons/StartButton'
 import { useCharactersStore } from '../../stores/characters.store'
 import SelectChar from '../../components/selectchar/SelectChar'
 

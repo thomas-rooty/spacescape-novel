@@ -9,6 +9,7 @@ const CharStats = () => {
       <View style={styles.left}>
         <Image style={styles.image} source={{ uri: selectedCharacter.imgURL }} />
         <Text style={styles.name}>{selectedCharacter.nom}</Text>
+        <Text style={styles.status}>En vie</Text>
       </View>
       <View style={styles.right}>
         <View style={styles.columnLeft}>
@@ -53,6 +54,9 @@ const styles = StyleSheet.create({
   },
   stat: {
     color: '#fff',
+  },
+  status: {
+    color: '#3fff00',
   },
   right: {
     display: 'flex',

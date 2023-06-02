@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, ImageBackground } from 'react-native'
 import { useScenariosStore } from '../../stores/scenarios.store'
 import { getAllScenarios } from '../../utils/fetchData'
 import CharStats from '../../components/charstats/CharStats'
+import ChoicesList from '../../components/lists/ChoicesList'
 
 const Playing = () => {
   const selectedScenario = useScenariosStore((state) => state.selectedScenario)
@@ -27,7 +28,7 @@ const Playing = () => {
     //  const randomScenario = niveauOneScenarios[Math.floor(Math.random() * niveauOneScenarios.length)]
     //  setSelectedScenario(randomScenario)
     //}
-    setSelectedScenario(scenarios[3]) // TEMP
+    setSelectedScenario(scenarios[5]) // TEMP
   }, [scenarios])
 
   return (
@@ -39,6 +40,9 @@ const Playing = () => {
         <View style={styles.scenarioContainer}>
           <Text style={styles.title}>{selectedScenario?.titre}</Text>
           <Text style={styles.desc}>{selectedScenario?.desc}</Text>
+        </View>
+        <View style={styles.choicesContainer}>
+          <ChoicesList choices={selectedScenario?.actionPossibles} />
         </View>
       </ImageBackground>
     </View>
@@ -75,6 +79,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#fff',
     textAlign: 'center',
+    padding: 10,
+  },
+  choicesContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'absolute',
+    bottom: 0,
+    paddingBottom: 40,
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
     padding: 10,
   },
 })
