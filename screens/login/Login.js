@@ -1,16 +1,21 @@
 import { useState } from 'react'
 import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import { loginUser } from '../../utils/authUtils'
+import { useUserStore } from '../../stores/user.store'
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const user = useUserStore((state) => state.user)
+  const setUser = useUserStore((state) => state.setUser)
 
   const handleLogin = async () => {
     const user = await loginUser(email, password)
     if (user) {
-      alert('Bienvenue ' + user.name)
+      alert(`Bienvenue ${user.name}`)
       navigation.navigate('Homepage')
+      setUser(user)
+      console.log(user)
     } else {
       alert('Mauvais identifiants')
     }

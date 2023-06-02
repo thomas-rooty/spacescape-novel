@@ -1,10 +1,25 @@
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
 
-const LoginPageButton = () => {
+export const LoginPageButton = () => {
   const navigation = useNavigation()
   const onPress = () => {
     navigation.navigate('Login')
+  }
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+        <Text style={styles.text}>Login</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+
+export const AdminPanelButton = () => {
+  const navigation = useNavigation()
+  const onPress = () => {
+    navigation.navigate('AdminPanel')
   }
 
   return (
@@ -18,9 +33,6 @@ const LoginPageButton = () => {
 
 const styles = StyleSheet.create({
   button: {
-    position: 'absolute',
-    top: 50,
-    right: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: 10,
     borderRadius: 15,
@@ -28,6 +40,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: '#fff',
+    marginRight: 10,
   },
   text: {
     color: '#fff',
@@ -35,5 +48,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 })
-
-export default LoginPageButton
