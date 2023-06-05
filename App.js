@@ -6,6 +6,7 @@ import Login from './screens/login/Login'
 import Crud from './screens/crud/Crud'
 import AddScenario from './screens/crud/AddScenario'
 import ManageScenarios from './screens/crud/ManageScenarios'
+import AddAdmin from './screens/crud/AddAdmin'
 
 const Stack = createStackNavigator()
 
@@ -17,12 +18,13 @@ const App = () => {
           headerShown: false,
         }}
       >
-        <Stack.Screen name='Homepage' component={Homepage} />
-        <Stack.Screen name='Playing' component={Playing} />
-        <Stack.Screen name='Login' component={Login} />
-        <Stack.Screen name='Crud' component={Crud} />
-        <Stack.Screen name='AddScenario' component={AddScenario} />
-        <Stack.Screen name='ManageScenarios' component={ManageScenarios} />
+        <Stack.Screen name="Homepage" component={Homepage} />
+        <Stack.Screen name="Playing" component={Playing} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Crud" component={Crud} />
+        <Stack.Screen name="AddScenario" component={AddScenario} />
+        <Stack.Screen name="ManageScenarios" component={ManageScenarios} />
+        <Stack.Screen name="AddAdmin" component={AddAdmin} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -44,6 +44,11 @@ const Crud = () => {
             <Text style={styles.btnText}>Manager les scenarios</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.button}>
+          <TouchableOpacity onPress={() => navigation.navigate('AddAdmin')}>
+            <Text style={styles.btnText}>Creer un administrateur</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   )

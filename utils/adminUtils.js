@@ -7,7 +7,7 @@ export const addScenario = async (scenario, token) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'token': token,
+      token: token,
     },
     body: JSON.stringify(scenario),
   })
@@ -21,8 +21,22 @@ export const removeScenario = async (scenarioId, token) => {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      'token': token,
+      token: token,
     },
+  })
+  return await response.json()
+}
+
+// Function that adds a user using the api
+export const addUser = async (user, token) => {
+  const uri = `${api}/users`
+  const response = await fetch(uri, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      token: token,
+    },
+    body: JSON.stringify(user),
   })
   return await response.json()
 }
