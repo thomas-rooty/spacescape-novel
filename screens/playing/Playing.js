@@ -9,6 +9,7 @@ import { updateCharWithBonus, updateCharWithMalus } from '../../utils/statsUpdat
 import { characterAlive } from '../../utils/characterAlive'
 import { randomNextScenario, randomeFirstScenario } from '../../utils/scenarioRandomizer'
 import { setImageBackground } from '../../utils/setImageBackground'
+import * as Haptics from 'expo-haptics'
 import CharStats from '../../components/charstats/CharStats'
 import ChoicesList from '../../components/lists/ChoicesList'
 
@@ -46,6 +47,9 @@ const Playing = () => {
 
   // What to do after a choice is made
   const onChoiceMade = async (choice) => {
+    // Vibrate
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
+
     // Show user what's been done
     Alert.alert(choice.bonus.titre, choice.bonus.desc)
 
