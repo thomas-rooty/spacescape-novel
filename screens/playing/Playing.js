@@ -8,14 +8,15 @@ import { getAllScenarios, getAllUnplanned } from '../../utils/fetchData'
 import { updateCharWithBonus, updateCharWithMalus } from '../../utils/statsUpdates'
 import { characterAlive } from '../../utils/characterAlive'
 import { randomNextScenario, randomeFirstScenario } from '../../utils/scenarioRandomizer'
+import { setImageBackground } from '../../utils/setImageBackground'
 import CharStats from '../../components/charstats/CharStats'
 import ChoicesList from '../../components/lists/ChoicesList'
 
 const Playing = () => {
   // Import scenario and character store
-  const background = require('../../assets/scenarios/OuSePoser.png')
   const navigation = useNavigation()
   const [hasUserPlayed, setHasUserPlayed] = useState(false)
+  const [background, setBackground] = useState('https://github.com/thomas-rooty/spacescape-novel/blob/master/assets/scenarios/01/1.jpeg?raw=true')
   const selectedScenario = useScenariosStore((state) => state.selectedScenario)
   const setSelectedScenario = useScenariosStore((state) => state.setSelectedScenario)
   const scenarios = useScenariosStore((state) => state.scenarios)
@@ -56,6 +57,14 @@ const Playing = () => {
     await updateCharWithMalus(choice, selectedCharacter, updateAttribute)
   }
 
+  // Set image every time selectedScenario changes
+  useEffect(() => {
+    if (selectedScenario) {
+      const image = setImageBackground({ scenario: selectedScenario })
+      setBackground(image)
+    }
+  }, [selectedScenario])
+
   // Function to handle round logic
   const handleRound = () => {
     if (!characterAlive(selectedCharacter)) {
@@ -81,7 +90,7 @@ const Playing = () => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={background} resizeMode="cover" style={styles.backgroundImg}>
+      <ImageBackground source={{ uri: background }} resizeMode="cover" style={styles.backgroundImg}>
         <View style={styles.characterContainer}>
           <CharStats />
         </View>
