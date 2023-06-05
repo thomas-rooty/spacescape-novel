@@ -27,7 +27,7 @@ const Playing = () => {
   const selectedCharacter = useCharactersStore((state) => state.selectedCharacter)
   const updateAttribute = useCharactersStore((state) => state.updateAttribute)
 
-  // Game system logic
+  // Game system logic initialization
   useEffect(() => {
     const fetchScenarios = async () => {
       const scenariosResult = await getAllScenarios()
@@ -38,30 +38,27 @@ const Playing = () => {
     fetchScenarios()
   }, [])
 
-  // Randomly select a scenario to start off with
+  // Random first scenario
   useEffect(() => {
     if (scenarios.length > 0) {
       setSelectedScenario(randomeFirstScenario(scenarios))
     }
   }, [scenarios])
 
-  // What to do after a choice is made
+  // Choice has been made
   const onChoiceMade = async (choice) => {
-    // Vibrate
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
 
     // Show user what's been done
     Alert.alert(choice.bonus.titre, choice.bonus.desc)
-
-    // Update user played status
     setHasUserPlayed(true)
 
-    // Update character stats
+    // Update character stats with consequences
     await updateCharWithBonus(choice, selectedCharacter, updateAttribute)
     await updateCharWithMalus(choice, selectedCharacter, updateAttribute)
   }
 
-  // Set image every time selectedScenario changes
+  // Background image handler
   useEffect(() => {
     if (selectedScenario) {
       const image = setImageBackground({ scenario: selectedScenario })
@@ -69,7 +66,7 @@ const Playing = () => {
     }
   }, [selectedScenario])
 
-  // Function to handle round logic
+  // Round logic
   const handleRound = () => {
     if (!characterAlive(selectedCharacter)) {
       Alert.alert('Game Over', 'Vous êtes mort !')
