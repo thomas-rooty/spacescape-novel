@@ -1,4 +1,4 @@
-const api = 'http://192.168.1.61:5000/api'
+const api = 'http://10.74.1.120:5000/api'
 
 // Get all characters from API
 export const getAllCharacters = async () => {

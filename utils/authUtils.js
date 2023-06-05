@@ -1,6 +1,6 @@
 import jwt_decode from 'jwt-decode'
 
-const api = 'http://192.168.1.61:5000/api'
+const api = 'http://10.74.1.120:5000/api'
 
 // Function that log in an admin
 export const loginUser = async (email, password) => {
