@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   selectionText: {
-    width: '80%',
-    marginLeft: '10%',
-    marginTop: 5,
+    width: '50%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 10,
   },
 })
 
